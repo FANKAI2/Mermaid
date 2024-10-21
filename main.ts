@@ -3,7 +3,14 @@ namespace SpriteKind {
     export const MiddleNotes = SpriteKind.create()
     export const HighNotes = SpriteKind.create()
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.HighNotes, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.spray, 200)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.LowNotes, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.spray, 200)
+    music.play(music.createSong(hex`003c000408020106001c00010a006400f40164000004000000000000000000000000000000000234000000080002061108001000010610001800020812180020000108200028000206112800300001063000380002080f380040000108`), music.PlaybackMode.LoopingInBackground)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.MiddleNotes, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.spray, 200)
 })
 tiles.setCurrentTilemap(tilemap`level2`)
